@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
 
 
     // This will add methods getMovies, setMovies, addMovie, and addMovies to Actor instances.
-    // models.Actor.belongsToMany(models.Movie, {through: 'MovieActor'});
+    //models.Actor.belongsToMany(models.Movie, {through: 'MovieActor'});
   };
 
   return Movie;
