@@ -1,11 +1,17 @@
-const { Genre,Actor,Movie } = require('./models');
+const {
+  Genre,
+  Actor,
+  Movie
+} = require('./models');
 
 /*
   currently, the genre table only has 3 entries: Action, Comedy, and Drama
   Add one more Genre of your choice.
 */
 function insertNewGenre() {
-    return Genre.create({name:"Science"})
+  return Genre.create({
+    name: "Science"
+  })
 }
 
 /*
@@ -13,7 +19,10 @@ function insertNewGenre() {
   Add one more Movie of your choice. But it CANNOT be from 2008.
 */
 function insertNewMovie() {
-    return Movie.create({title:"dont know why",year:"2021"})
+  return Movie.create({
+    title: "dont know why",
+    year: "2021"
+  })
 }
 
 /*
@@ -21,10 +30,10 @@ function insertNewMovie() {
 */
 function getMovieWithId2() {
   return Movie.findOne({
-    where:{
+    where: {
       id: 2
     }
-    }).then(data=>data.title)
+  }).then(data => data.title)
 }
 
 /*
@@ -32,14 +41,14 @@ function getMovieWithId2() {
 */
 function getAllActors() {
   return Actor.findAll()
-            .then(data=>{
-              //console.log(data)
-              const actorNames = data.map((actor)=>{
-                return actor.dataValues.name
-              })
-              //console.log(actorNames)
-              return actorNames
-            })
+    .then(data => {
+      //console.log(data)
+      const actorNames = data.map((actor) => {
+        return actor.name
+      })
+      //console.log(actorNames)
+      return actorNames
+    })
 }
 
 /*
@@ -47,14 +56,14 @@ function getAllActors() {
 */
 function getAllMoviesFrom2008() {
   return Movie.findAll({
-    where:{
-      year:2008
+    where: {
+      year: 2008
     }
-  }).then(data=>{
+  }).then(data => {
     //console.log(data)
-     return data.map(movie=>{
-       return movie.dataValues.title
-     })
+    return data.map(movie => {
+      return movie.title
+    })
   })
 }
 
@@ -63,8 +72,8 @@ function getAllMoviesFrom2008() {
 */
 function deleteGenreYouAdded() {
   return Genre.destroy({
-    where:{
-      name:"Science"
+    where: {
+      name: "Science"
     }
   })
 }
@@ -74,19 +83,19 @@ function deleteGenreYouAdded() {
   Add this association.
 */
 async function associateRosarioToEagleEye() {
-  
+
   let eagleEye = await Movie.findOne({
-    where:{
-      title:"Eagle Eye"
+    where: {
+      title: "Eagle Eye"
     }
   })
   let rosarioDawson = await Actor.findOne({
-    where:{
-      name:"Rosario Dawson"
+    where: {
+      name: "Rosario Dawson"
     }
   })
   return await eagleEye.addActor(rosarioDawson)
-  
+
 }
 
 /*
@@ -95,13 +104,13 @@ async function associateRosarioToEagleEye() {
 */
 async function associateRobertToTropicThunder() {
   let downeyJr = await Actor.findOne({
-    where:{
-      name:"Robert Downey Jr."
+    where: {
+      name: "Robert Downey Jr."
     }
   })
   let tropicThunder = await Movie.findOne({
-    where:{
-      title:"Tropic Thunder"
+    where: {
+      title: "Tropic Thunder"
     }
   })
   return await tropicThunder.addActor(downeyJr)

@@ -1,5 +1,7 @@
 'use strict';
-const { Model } = require('sequelize');
+const {
+  Model
+} = require('sequelize');
 
 
 module.exports = (sequelize, DataTypes) => {
@@ -12,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
       }
     },
-    year: { type: DataTypes.INTEGER },
+    year: {
+      type: DataTypes.INTEGER
+    },
   }, {
     sequelize,
     modelName: 'movie'
@@ -26,10 +30,10 @@ module.exports = (sequelize, DataTypes) => {
 
     // This will create a Many-to-Many relationship
     // It creates a new table (MovieActor) to hold movieId and actorId 
-    // This will add methods getActors, setActors, addActor, addActors to Movie instances.
-    models.Movie.belongsToMany(models.Actor, {through: 'MovieActor'});
-
-
+    // This will add methods getActors, setActors, addActor, addActors to Movie instances. //get[Modelname]
+    models.Movie.belongsToMany(models.Actor, {
+      through: 'MovieActor'
+    });
     // This will add methods getMovies, setMovies, addMovie, and addMovies to Actor instances.
     //models.Actor.belongsToMany(models.Movie, {through: 'MovieActor'});
   };
